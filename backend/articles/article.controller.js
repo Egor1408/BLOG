@@ -1,13 +1,10 @@
-import Article from './article.schema.js';
+import ArticleService from './article.service.js';
 
 class ArticleController {
-    async create(req, res) {
+    async createArticle(req, res) {
         try {
-            const {author, title, description, imageUrl, createdAt} = req.body
-            const article = await Article.create({
-                author, title, description, imageUrl, createdAt
-            });
-            res.json(article);
+            const article = await ArticleService.createArticle(req.body);
+            return res.json(article);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -15,7 +12,7 @@ class ArticleController {
 
     async getArticleList(req, res) {
         try {
-            const articleList = await Article.find();
+            const articleList = await ArticleService.getArticleList();
             return res.json(articleList);
         } catch (err) {
             res.status(500).json(err);
@@ -24,8 +21,7 @@ class ArticleController {
 
     async getArticle(req, res) {
         try {
-            const {id} = req.params;
-            const article = await Article.findById(id);
+            const article = await ArticleService.getArticle(req.params.id);
             return res.json(article);
         } catch (err) {
             res.status(500).json(err);
@@ -34,18 +30,18 @@ class ArticleController {
 
     async updateArticle(req, res) {
         try {
-
+            const updatedArticle = await ArticleService.updateArticle(req.body)
+            return res.json(updatedArticle);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).json(err.message);
         }
     }
 
     async deleteArticle(req, res) {
-        try {
-
-        } catch (err) {
-            res.status(500).json(err);
-        }
+        const article = await ArticleService.deleteArticle(req.params.id);
+        return res.json(article);
+    } catch (err) {
+        res.status(500).json(err);
     }
 }
 
