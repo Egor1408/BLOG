@@ -80,42 +80,8 @@ ul, li {
 		background: forestgreen;
 		display: grid;
 		grid-template-columns: 2fr 1fr;
-		
+
 		flex-direction: row-reverse;
-
-		> .menu {
-			width: 100%;
-			height: 100%;
-
-			background-color: aquamarine;
-
-			> .container {
-				background: red;
-			}
-
-			.menu-list {
-				display: flex;
-				flex-direction: column;
-				gap: 6px;
-
-				background: rgb(123, 201, 123);
-				padding: 6px 6px;
-				border-radius: 12px;
-
-				.menu-item {
-					display: flex;
-					align-items: center;
-					justify-content: flex-start;
-
-					width:100%;
-					height: 30px;
-					background: darkcyan;
-					border-radius: 4px;
-					padding: 0 20px;
-				}
-				// padding: 0 20px;
-			}
-		}
 
 		.content {
 			width: 100%;
