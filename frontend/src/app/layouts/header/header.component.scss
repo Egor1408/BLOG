@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  width: 100vw;
+  height: 80px;
+  background: rgba(135, 131, 212, 0.5);
+
+  .btn-container {
+    display: flex;
+    gap: 20px;
+  }
+
+}
