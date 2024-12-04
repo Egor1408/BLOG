@@ -1,1 +1,28 @@
-<p>signup works!</p>
+<div class="signup-container">
+  <div class="modal">
+    <div class="header">Registration</div>
+    <form
+      class="form-wrap"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+      <p class="input-wrap">
+        <label>Email:</label>
+        <input
+          formControlName="email"
+          type="text"
+          name="email">
+      </p>
+      <p class="input-wrap">
+        <label>Password:</label>
+        <input
+          formControlName="password"
+          type="password"
+          name="password">
+      </p>
+      <button class="btn-submit" type="submit">Registration</button>
+    </form>
+    <div class="footer">
+      <a class="btn-link" routerLink="/signin">or Login ></a>
+    </div>
+  </div>
+</div>

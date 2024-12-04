@@ -2,22 +2,25 @@ import express, { Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import userRouter from './routes/users';
 import cardRouter from './routes/cards';
-import auth from './middlewares/auth';
+import authMiddleware from './middlewares/auth';
+import cors from 'cors';
 
 const PORT = 3000;
-const DB_URL = 'mongodb://127.0.0.1:27017/mestodb';
+const DB_URL = 'mongodb://127.0.0.1:27017/mydb';
 
 const app = express();
 app.use(express.json());
+app.use(cors({ origin: true, credentials: true }));
+app.options('*', cors({ origin: true, credentials: true }))
 app.use((req: Request, res: Response, next: NextFunction) => {
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:4200`);
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 })
 
-// app.use(auth);
+// app.use(authMiddleware);
 app.use('/', userRouter);
 app.use('/', cardRouter);
 app.use('*', (req: Request, res: Response) => {

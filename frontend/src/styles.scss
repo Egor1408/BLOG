@@ -1,10 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Graphik", sans-serif;
 }
 
-.btn {
-  height: 40px;
-  padding: 5px 10px;
+a {
+  text-decoration: none;
+}
+
+button {
+  height: 30px;
+  min-width: 80px;
+  padding: 0 5px;
+  font-size: 16px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

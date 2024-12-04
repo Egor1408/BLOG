@@ -15,7 +15,6 @@ const WEEK_TIME = 1000 * 60 * 60 * 24 * 7;
 class UserController {
   static createUser(req: Request, res: Response) {
     const { name, about, avatar, email, password } = req.body;
-    console.log(password);
 
     bcrypt.hash(password, 10)
       .then(hash => User.create({
@@ -36,7 +35,7 @@ class UserController {
   }
 
   static getUserList(req: Request, res: Response) {
-    User.find()
+        User.find()
       .then((usersList) => res.json(usersList))
       .catch(() => {
         errorsHandler(res, UNDEFINED_ERROR);
@@ -92,6 +91,7 @@ class UserController {
   }
 
   static login(req: Request, res: Response) {
+
     const { email, password } = req.body;
     let token = '';
 
@@ -99,8 +99,6 @@ class UserController {
       .orFail(new Error('Login error'))
       .then((user: IUser) => {
         token = jwt.sign({ _id: user._id}, 'some-secret-key', { expiresIn: '7d' });
-        console.log(token);
-
         return bcrypt.compare(password, user.password)
       })
       .then((matched: any) => {

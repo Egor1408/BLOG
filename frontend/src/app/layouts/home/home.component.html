@@ -1,1 +1,11 @@
-<p>home works!</p>
+<h1>HOME</h1>
+<div *ngIf=userList; else loading>
+  <div *ngFor="let user of userList">
+    <div>{{user.name}}</div>
+    <div>{{user.email}}</div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>
